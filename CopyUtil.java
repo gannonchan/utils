@@ -9,7 +9,7 @@ import java.io.IOException;
 
 /**
  * 复制工具类
- * @author Michael
+ * @author Gannon
  *
  */
 public class CopyUtil {
