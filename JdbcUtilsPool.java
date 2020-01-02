@@ -1,4 +1,4 @@
-package com.utiles;
+package utils;
 import java.util.Properties;
 import java.util.LinkedList;
 import java.io.IOException;
