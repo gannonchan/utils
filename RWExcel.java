@@ -15,9 +15,10 @@ public class RWExcel {
      * 根据fileType不同读取excel文件
      *
      * @param path 文件路径
+     * @param requridIndex 必填列下标，0开始
      * @throws IOException
      */
-    public static LinkedHashMap<String,ArrayList<List<String>>> readExcel(String path) {
+    public static LinkedHashMap<String,ArrayList<List<String>>> readExcel(String path,int requridIndex) {
         LinkedHashMap<String,ArrayList<List<String>>> sheetMap = new LinkedHashMap<>();;
         // return a list contains many list
         ArrayList<List<String>> lists;
@@ -43,22 +44,16 @@ public class RWExcel {
                 String sheetName = sheet.getSheetName();
                 //第一行为标题
                 for (Row row : sheet) {
-                    //得到首列是否为空字符串 如果是则为空行
+                    //得到该列必填单元格内容是否为空字符串 如果是则为空行
                     if(row==null){
                         continue;
                     }
-                    Cell cn1 = row.getCell(0);
-                    Cell cn2 = row.getCell(1);
-                    Cell cn3 = row.getCell(2);
-                    if(cn1==null||cn2==null||cn3==null) {
+                    Cell c = row.getCell(requridIndex);
+                    if(c==null) {
                         continue;
                     }else {
-                        cn1.setCellType(Cell.CELL_TYPE_STRING);
-                        cn2.setCellType(Cell.CELL_TYPE_STRING);
-                        cn3.setCellType(Cell.CELL_TYPE_STRING);
-                        if(cn1.getStringCellValue().trim().equals("")
-                                ||cn2.getStringCellValue().trim().equals("")
-                                ||cn3.getStringCellValue().trim().equals("")){
+                        c.setCellType(Cell.CELL_TYPE_STRING);
+                        if(c.getStringCellValue().trim().equals("")){
                             continue;
                         }
                      }
@@ -83,7 +78,11 @@ public class RWExcel {
         }
         return sheetMap;
     }
-
+    /**
+    * 将工作簿输出到文件
+    *@param wb 需要生成的工作簿
+    *@param path 需要生成的目标文件路径
+    */
     public static void createWbToFile(Workbook wb, String path){
         FileOutputStream fileOut= null;
         try {
