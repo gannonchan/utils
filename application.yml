@@ -7,8 +7,18 @@
 #服务器配置
 server: 
   port: 8080
-#数据源配置
+  servlet:
+    context-path: /
 spring: 
+  resources:
+    #指定静态资源路径，默认为classpath:[/META-INF/resources/,/resources/, /static/, /public/]以及context:/
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/}
+	jackson:
+    #指定日期格式，比如yyyy-MM-dd HH:mm:ss
+    date-format: yyyy-MM-dd HH:mm:ss
+    #指定日期格式化时区
+    time-zone: GMT+8
+#数据源配置
   datasource: 
     url: jdbc:oracle:thin:@0.0.0.0:orcl
     driver-class-name: oracle.jdbc.driver.OracleDriver
