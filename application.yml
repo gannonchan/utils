@@ -1,0 +1,45 @@
+#<!--mybatis-->
+#        <dependency>
+#            <groupId>org.mybatis.spring.boot</groupId>
+#            <artifactId>mybatis-spring-boot-starter</artifactId>
+#            <version>2.1.0</version>
+#        </dependency>
+#服务器配置
+server: 
+  port: 8080
+#数据源配置
+spring: 
+  datasource: 
+    url: jdbc:oracle:thin:@0.0.0.0:orcl
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    username: gannon
+    password: 123456
+#redis配置
+  redis:
+    #指定数据库
+    database: 0
+    host: 0.0.0.0 
+    port: 6379
+    password: 123456
+    #jedis:
+    #  pool: 
+        #max-active: 200
+        #max-wait: -1
+        #max-idle: 50
+        #min-idle: 0
+#springboot2.* Redis连接池配置
+    lettuce: 
+      #超时时间
+      shutdown-timeout: 300
+      pool: 
+        #最大活跃数
+        max-active: 200
+        max-wait: -1
+        max-idle: 50
+        min-idle: 0
+# Mybatis配置
+mybatis:
+  # 指定Mapper文件包扫描
+  mapper-locations: classpath:mapper/*Mapper.xml
+  # 指定entity扫描包类
+  type-aliases-package: com.gannon.entity
