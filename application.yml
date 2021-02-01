@@ -13,7 +13,7 @@ spring:
   resources:
     #指定静态资源路径，默认为classpath:[/META-INF/resources/,/resources/, /static/, /public/]以及context:/
     static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/}
-	jackson:
+  jackson:
     #指定日期格式，比如yyyy-MM-dd HH:mm:ss
     date-format: yyyy-MM-dd HH:mm:ss
     #指定日期格式化时区
